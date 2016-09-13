@@ -23,9 +23,9 @@ function fsn_init_copyright() {
 		), $atts));
 		
 		$output = '<div class="fsn-copyright '. fsn_style_params_class($atts) .'">';
-			$output .= !empty($before_copyright) ? $before_copyright .' ' : '';
+			$output .= !empty($before_copyright) ? esc_html($before_copyright) .' ' : '';
 			$output .= '&copy;'.date("Y");
-			$output .= !empty($after_copyright) ? ' '. $after_copyright : '';
+			$output .= !empty($after_copyright) ? ' '. esc_html($after_copyright) : '';
 		$output .= '</div>';
 		
 		return $output;
