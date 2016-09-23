@@ -11,29 +11,13 @@
  * @since 1.0.0
  */
 
-add_action('init', 'fsn_init_copyright', 12);
+/**
+ * Map Shortcode
+ */
 
+add_action('init', 'fsn_init_copyright', 12);
 function fsn_init_copyright() {	
-	
-	//OUTPUT SHORTCODE
-	function fsn_copyright_shortcode($atts, $content) {
-		extract(shortcode_atts(array(
-			'before_copyright' => '',
-			'after_copyright' => ''
-		), $atts));
-		
-		$output = '<div class="fsn-copyright '. fsn_style_params_class($atts) .'">';
-			$output .= !empty($before_copyright) ? esc_html($before_copyright) .' ' : '';
-			$output .= '&copy;'.date("Y");
-			$output .= !empty($after_copyright) ? ' '. esc_html($after_copyright) : '';
-		$output .= '</div>';
-		
-		return $output;
-	}
-	
-	add_shortcode( 'fsn_copyright', 'fsn_copyright_shortcode' );
 			
-	//MAP SHORTCODE
 	if (function_exists('fsn_map')) {
 		fsn_map(array(
 			'name' => __('Copyright', 'fusion-extension-copyright'),
@@ -55,5 +39,25 @@ function fsn_init_copyright() {
 		));
 	}
 }
+
+/**
+ * Output Shortcode
+ */
+ 
+function fsn_copyright_shortcode($atts, $content) {
+	extract(shortcode_atts(array(
+		'before_copyright' => '',
+		'after_copyright' => ''
+	), $atts));
+	
+	$output = '<div class="fsn-copyright '. fsn_style_params_class($atts) .'">';
+		$output .= !empty($before_copyright) ? esc_html($before_copyright) .' ' : '';
+		$output .= '&copy;'.date("Y");
+		$output .= !empty($after_copyright) ? ' '. esc_html($after_copyright) : '';
+	$output .= '</div>';
+	
+	return $output;
+}
+add_shortcode( 'fsn_copyright', 'fsn_copyright_shortcode' );
 
 ?>
