@@ -9,6 +9,8 @@
  * Version: 1.1.2
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
+ * Text Domain: fusion-extension-copyright
+ * Domain Path: /languages/
  * License: GPL2
  */
  
@@ -25,8 +27,19 @@ class FusionExtensionCopyright	{
 	public function __construct() {
 						
 		// Initialize the language files
-		load_plugin_textdomain( 'fusion-extension-copyright', false, plugin_dir_url( __FILE__ ) . 'languages' );
+		add_action('plugins_loaded', array($this, 'load_textdomain'));
 		
+	}
+	
+	/**
+	 * Load Textdomain
+	 *
+	 * @since 1.1.3
+	 *
+	 */
+	 
+	public function load_textdomain() {
+		load_plugin_textdomain( 'fusion-extension-copyright', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 	
 }
